@@ -2,13 +2,7 @@
 const Timesheet = require("../models/timeSheet");
 
 const saveTimeSheet = async (req, res) => {
-  const newTimesheet = Timesheet({
-    project_name: req.body.project_name,
-    activity: req.body.activity,
-    date: req.body.date,
-    duration: req.body.duration,
-    status: req.body.status,
-  });
+  const newTimesheet = Timesheet(req.body);
   try {
     const savedTimesheet = await newTimesheet.save();
     return res.status(200).send({ success: true, Timesheet: savedTimesheet });
