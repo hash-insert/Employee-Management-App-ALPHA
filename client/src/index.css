@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --text: #060118;
+    --background: #ffffff;
+    --primary-button: #4919f5;
+    --secondary-button: #ece7fe;
+    --accent: #5c31f6;
+  }
+  html {
+    font-family: "Poppins", sans-serif;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--background);
+  }
+}
