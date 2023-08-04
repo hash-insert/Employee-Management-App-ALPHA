@@ -1,81 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { auth, db } from '../../../config/firebase';
-import LeaveRequestForm from './leaveRequestForm';
-import './leaveRequest.css';
+import LeaveRequestsFrorm from "./LeaveRequestsFrorm";
+import EastIcon from "@mui/icons-material/East";
+import { Link } from "react-router-dom";
 
-const EmpleaveRequests = () => {
-    const [showForm, setShowForm] = useState(false);
-    const [leaveRequests, setLeaveRequests] = useState([]);
-    const API_URL = "https://server-sx5c.onrender.com";
-    const currentUser = auth.currentUser;
-    // const [leaveData, setLeaveData] = useState([
-    //     { id: 1, date: "2023-07-01", reason: "Vacation", status: "approved" },
-    //     { id: 2, date: "2023-07-05", reason: "Personal", status: "denied" },
-    //     { id: 3, date: "2023-07-10", reason: "Sick", status: "approved" },
-    // ]);
-
-    const handleFormVisibility = () => {
-        setShowForm(!showForm);
-    }
-
-    const handleFormSubmit = (newLeaveRequest) => {
-        setLeaveData([newLeaveRequest, ...leaveData]);
-        setShowForm(false);
-    }
-    useEffect(() => {
-        // Fetch leave requests from the backend API
-        axios.get(`${API_URL}/leaverequest/getAll/${currentUser.email}`)
-            .then((response) => {
-                console.log(response)
-                setLeaveRequests(response.data.data);
-            })
-            .catch((error) => {
-                console.log('Error fetching leave requests:', error);
-            });
-    }, []);
-
-    return (
-        <div>
-
-            {!showForm && <div className='header'>
-                <h1>Leave Requests</h1>
-                <h1><button onClick={handleFormVisibility}>+</button></h1>
-            </div>}
-
-            {showForm ? (<LeaveRequestForm />) : (
-                // <div className='header'>
-                //     <h1>Leave Requests</h1>
-                //     <h1><button onClick={handleFormVisibility}>+</button></h1>
-                // </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>From</th>
-                            <th>To</th>
-                            <th>Reason</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {leaveRequests.map((leaveRequest) => (
-                            <tr key={leaveRequest._id}>
-                                <td>{leaveRequest.employee_name}</td>
-                                <td>{leaveRequest.employee_email}</td>
-                                <td>{leaveRequest.start_date}</td>
-                                <td>{leaveRequest.end_date}</td>
-                                <td>{leaveRequest.reason}</td>
-                                <td>{leaveRequest.status}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            )}
-
+const leaveRequests = () => {
+  return (
+    <>
+      <div className=" flex justify-between items-center text-xl font-bold text-primary-button mb-12 flex-wrap ">
+        <div>Leave Requests</div>
+        <Link to={"/employee/leaverequestsdetails"} className=" cursor-pointer">
+          View All
+          <EastIcon className=" ml-2" />
+        </Link>
+      </div>
+      <div className=" grid grid-cols-1 gap-12 md:grid-cols-2 mb-16">
+        <div className=" w-full ">
+          <img src="/leave2.svg" alt="Leave Svg" className=" w-full" />
         </div>
-    );
+
+        <div className=" w-full ">
+          <LeaveRequestsFrorm className=" flex " />
+        </div>
+      </div>
+    </>
+  );
 };
 
-export default EmpleaveRequests;
+export default leaveRequests;

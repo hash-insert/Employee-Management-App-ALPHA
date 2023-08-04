@@ -23,7 +23,11 @@ const LeaveRequest = () => {
   const getAllLeaves = async () => {
     try {
       const response = await axios.get(`${API_URL}/leaverequest/getAll`);
-      setLeaves(response.data.leaveRequest);
+      const leaveRequests = response.data.leaveRequest;
+      const pendingRequests = leaveRequests.filter(
+        (l) => l.status === "pending"
+      );
+      setLeaves(pendingRequests);
     } catch (error) {
       console.log("error in getting the leave requests", error);
     }
@@ -38,9 +42,7 @@ const LeaveRequest = () => {
       );
       if (response.data.success) {
         message.success(`${leave.employee_name}'s leave ${leaveStatus}`);
-        axios
-          .delete(`${API_URL}/leaverequest/delete/${leave._id}`)
-          .then(() => getAllLeaves());
+        getAllLeaves();
       } else {
         message.error(response.data.msg);
       }
@@ -63,7 +65,9 @@ const LeaveRequest = () => {
 
   return (
     <>
-      <h2 className=" text-xl font-semibold mb-4">Leave Requests</h2>
+      <h2 className=" text-xl font-semibold mb-4 text-primary-button">
+        Leave Requests
+      </h2>
       <List
         className="demo-loadmore-list"
         itemLayout="horizontal"
@@ -97,7 +101,7 @@ const LeaveRequest = () => {
               title={
                 <div>
                   <b className=" capitalize text-xl font-semibold">
-                    {leave.employee_name}
+                    {leave?.employee_name}
                   </b>
                 </div>
               }
@@ -108,13 +112,13 @@ const LeaveRequest = () => {
                     Reason :{" "}
                     {
                       <div className=" text-base font-medium inline capitalize">
-                        {leave.reason}
+                        {leave?.reason}
                       </div>
                     }
                   </p>
                   <p className="text-sm font-normal">
-                    Date: {formatDate(leave.start_date)} to{" "}
-                    {formatDate(leave.end_date)}
+                    Date: {formatDate(leave?.start_date)} to{" "}
+                    {formatDate(leave?.end_date)}
                   </p>
                 </div>
               }
