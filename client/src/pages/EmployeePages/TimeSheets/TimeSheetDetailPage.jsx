@@ -20,12 +20,13 @@ import { Button } from "@mui/material";
 import { Tooltip, message } from "antd";
 import { auth } from "../../../config/firebase.js";
 import Loader from "../../../Loader";
+import { Api } from "../../../Api";
 
 const API_URL = "https://server-sx5c.onrender.com";
 
 const getAllTimesheets = async () => {
   try {
-    const data = await axios.get(`${API_URL}/timesheet/getAll`);
+    const data = await Api.get(`/timesheet/getAll`);
     console.log(data.data);
     return data.data; // Assuming the timesheet data is returned as an array
   } catch (error) {
@@ -37,9 +38,7 @@ const getAllTimesheets = async () => {
 // eslint-disable-next-line no-unused-vars
 const DeleteTimeSheet = async ({ timesheet, status }) => {
   try {
-    const data = await axios.delete(
-      `${API_URL}/timesheet/delete/${timesheet._id}`
-    );
+    const data = await Api.delete(`/timesheet/delete/${timesheet._id}`);
     if (data.data.success) {
       message.success(`${timesheet.name}'s TimeSheet is Deleted successfully`);
     } else {

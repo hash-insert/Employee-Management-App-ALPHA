@@ -9,11 +9,12 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Button } from "@mui/material";
 import { Tooltip, message } from "antd";
 import Loader from "../../Loader";
+import { Api } from "../../Api";
 
 const API_URL = "https://server-sx5c.onrender.com";
 const getAllTimesheets = async () => {
   try {
-    const data = await axios.get(`${API_URL}/timesheet/getAll`);
+    const data = await Api.get(`/timesheet/getAll`);
     return data.data; // Assuming the timesheet data is returned as an array
   } catch (error) {
     console.log(error);
@@ -23,16 +24,13 @@ const getAllTimesheets = async () => {
 
 const updateTimesheet = async ({ timesheet, status }) => {
   try {
-    const data = await axios.put(
-      `${API_URL}/timesheet/update/${timesheet._id}`,
-      {
-        project_name: timesheet.project_name,
-        status: status,
-        activity: timesheet.activity,
-        date: timesheet.date,
-        duration: timesheet.duration,
-      }
-    );
+    const data = await Api.put(`/timesheet/update/${timesheet._id}`, {
+      project_name: timesheet.project_name,
+      status: status,
+      activity: timesheet.activity,
+      date: timesheet.date,
+      duration: timesheet.duration,
+    });
     if (data.data.success) {
       message.success(
         `${timesheet?.employee_name}'s TimeSheet is ${status} succesfully`

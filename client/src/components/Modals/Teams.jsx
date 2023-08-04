@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { Modal, Button, message } from "antd";
 import axios from "axios";
 import { RerenderContext } from "../../context/ReRender";
+import { Api } from "../../Api";
 
 export const Teams = ({ visible, handleTeamModal, id }) => {
   const [teams, setTeams] = useState([]);
@@ -9,9 +10,7 @@ export const Teams = ({ visible, handleTeamModal, id }) => {
 
   const getAllTeams = async () => {
     try {
-      const response = await axios.get(
-        `https://server-sx5c.onrender.com/team/getAll/`
-      );
+      const response = await Api.get(`/team/getAll/`);
       if (response.data.success) {
         var teamNames = response.data.teams.map((team) => team.teamName);
         setTeams(teamNames);
@@ -23,13 +22,10 @@ export const Teams = ({ visible, handleTeamModal, id }) => {
 
   const handleAddToTeam = async (teamName, id) => {
     try {
-      const response = await axios.put(
-        `https://server-sx5c.onrender.com/team/updateTeam/`,
-        {
-          teamName,
-          id,
-        }
-      );
+      const response = await Api.put(`/team/updateTeam/`, {
+        teamName,
+        id,
+      });
       if (response.data.success) {
         message.success(response.data.msg);
         updateRender();

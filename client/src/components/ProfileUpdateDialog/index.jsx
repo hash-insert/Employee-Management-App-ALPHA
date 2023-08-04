@@ -13,13 +13,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useMutation, useQueryClient } from "react-query";
 import { message } from "antd";
+import { Api } from "../../Api";
 
 const updateProfile = async ({ id, obj }) => {
   try {
-    const response = await axios.put(
-      `https://server-sx5c.onrender.com/employee/update/${id}`,
-      obj
-    );
+    const response = await Api.put(`/employee/update/${id}`, obj);
     if (response.data.success) {
       message.success(`Your data Updated successfully`);
       return response.data;

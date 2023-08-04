@@ -9,6 +9,7 @@ import { auth } from "../../../config/firebase";
 import { useQuery } from "react-query";
 import { useTable } from "react-table";
 import Loader from "../../../Loader";
+import { Api } from "../../../Api";
 
 const API_URL = "https://server-sx5c.onrender.com";
 
@@ -135,8 +136,8 @@ function LeaveRequestsDetailPage() {
 
 async function getAllLeaveRequests() {
   try {
-    const response = await axios.get(
-      `${API_URL}/leaverequest/getAll/${auth.currentUser.email}`
+    const response = await Api.get(
+      `/leaverequest/getAll/${auth.currentUser.email}`
     );
     return response.data.data;
   } catch (error) {

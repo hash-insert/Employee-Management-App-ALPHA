@@ -7,6 +7,7 @@ import { auth } from "../../../config/firebase";
 import { useMutation, useQueryClient } from "react-query";
 import axios from "axios";
 import { message } from "antd";
+import { Api } from "../../../Api";
 
 const Schema = yup.object().shape({
   start_date: yup
@@ -35,10 +36,7 @@ const sendLeaveRequest = async (data) => {
     data.end_date = data.end_date.toISOString().slice(0, 10); // Convert date to ISO format
     data.employee_email = auth.currentUser.email;
     data.employee_name = auth.currentUser.displayName;
-    const res = await axios.post(
-      `https://server-sx5c.onrender.com/leaverequest/save`,
-      data
-    );
+    const res = await Api.post(`/leaverequest/save`, data);
     console.log(res.data);
     if (res.data.success) {
       message.success(`Submitted Successfully`);

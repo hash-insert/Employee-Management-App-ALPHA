@@ -3,12 +3,11 @@ import { useQuery } from "react-query";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "react-calendar/dist/Calendar.css";
 import { Link } from "react-router-dom";
+import { Api } from "../../Api";
 
 const getAllEmployees = async () => {
   try {
-    const data = await axios.get(
-      `https://server-sx5c.onrender.com/employee/getAll`
-    );
+    const data = await Api.get(`/employee/getAll`);
     return data.data;
   } catch (error) {
     console.log(error);
