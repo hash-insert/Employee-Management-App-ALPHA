@@ -13,7 +13,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://employee-management-app-je5w.onrender.com",
-      "https://admirable-khapse-7ed76a.netlify.app/",
+      "https://admirable-khapse-7ed76a.netlify.app",
     ],
     credentials: true,
   })
