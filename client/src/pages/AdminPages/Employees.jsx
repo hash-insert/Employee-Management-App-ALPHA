@@ -31,6 +31,7 @@ import Search from "antd/es/input/Search";
 
 import "../../App.css";
 import Loader from "../../Loader";
+import { Api } from "../../Api";
 // import DeleteUser from "../../components/Modals/DeleteUser";
 // eslint-disable-next-line react/prop-types
 
@@ -103,7 +104,7 @@ const Employees = () => {
   const getAllEmployees = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`${API_URL}/employee/getAll`);
+      const response = await Api.get(`/employee/getAll`);
       const usersList = response.data.Employee;
       const filteredUsers = usersList.filter(
         (user) =>
@@ -124,10 +125,7 @@ const Employees = () => {
   const editEmployeesData = async (user) => {
     try {
       setIsLoading(true);
-      const response = await axios.put(
-        `${API_URL}/employee/update/${user._id}`,
-        user
-      );
+      const response = await Api.put(`/employee/update/${user._id}`, user);
       if (response.data.success) {
         message.success(
           `${response.data.data.employee_name}'s data is Updated successfully`
@@ -147,10 +145,7 @@ const Employees = () => {
     try {
       setIsLoading(true);
       // First, delete the user from your own backend (assuming it's served by your server)
-      const response = await axios.delete(
-        `${API_URL}/employee/delete/${user._id}`,
-        user
-      );
+      const response = await Api.delete(`/employee/delete/${user._id}`, user);
 
       if (response.data.success) {
         // Then, delete the user from Firestore

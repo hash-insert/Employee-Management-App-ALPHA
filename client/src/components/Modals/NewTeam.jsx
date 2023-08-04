@@ -3,6 +3,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { RerenderContext } from "../../context/ReRender";
+import { Api } from "../../Api";
 const NewTeam = ({ visible, handleNewTeamButton, values }) => {
   const [members, setMembers] = useState([]);
   const [teamName, setTeamName] = useState("");
@@ -32,13 +33,10 @@ const NewTeam = ({ visible, handleNewTeamButton, values }) => {
   const handleAddEmployee = async () => {
     try {
       if (teamName !== "") {
-        const response = await axios.post(
-          "https://server-sx5c.onrender.com/team/createTeam",
-          {
-            teamName: teamName,
-            members: members.map((mem) => mem._id),
-          }
-        );
+        const response = await Api.post("/team/createTeam", {
+          teamName: teamName,
+          members: members.map((mem) => mem._id),
+        });
         if (response.data.success) {
           message.success(response.data.msg);
         } else {

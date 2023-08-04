@@ -5,6 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 import { List, message } from "antd";
 import axios from "axios";
+import { Api } from "../../Api";
 
 const LeaveRequest = () => {
   const finalUser = useContext(AuthContext);
@@ -22,7 +23,7 @@ const LeaveRequest = () => {
 
   const getAllLeaves = async () => {
     try {
-      const response = await axios.get(`${API_URL}/leaverequest/getAll`);
+      const response = await Api.get(`/leaverequest/getAll`);
       const leaveRequests = response.data.leaveRequest;
       const pendingRequests = leaveRequests.filter(
         (l) => l.status === "pending"
@@ -36,8 +37,8 @@ const LeaveRequest = () => {
   const updateLeave = async (leave, leaveStatus) => {
     try {
       leave.status = leaveStatus;
-      const response = await axios.put(
-        `${API_URL}/leaverequest/update/${leave._id}`,
+      const response = await Api.put(
+        `/leaverequest/update/${leave._id}`,
         leave
       );
       if (response.data.success) {

@@ -7,7 +7,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import { DateRange, AvTimer, Task } from "@mui/icons-material";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
@@ -23,12 +23,13 @@ import { Tooltip, message } from "antd";
 import Loader from "../../../Loader";
 // import { auth } from "../../../config/firebase";
 import { useParams } from "react-router-dom";
+import { Api } from "../../../Api";
 
-const API_URL = "https://server-sx5c.onrender.com";
+// const API_URL = "https://server-sx5c.onrender.com";
 
 const getAllTimesheets = async () => {
   try {
-    const data = await axios.get(`${API_URL}/timesheet/getAll`);
+    const data = await Api.get(`/timesheet/getAll`);
     console.log(data.data);
     return data.data; // Assuming the timesheet data is returned as an array
   } catch (error) {
@@ -39,16 +40,13 @@ const getAllTimesheets = async () => {
 
 const updateTimesheet = async ({ timesheet, status }) => {
   try {
-    const data = await axios.put(
-      `${API_URL}/timesheet/update/${timesheet._id}`,
-      {
-        project_name: timesheet.project_name,
-        status: status,
-        activity: timesheet.activity,
-        date: timesheet.date,
-        duration: timesheet.duration,
-      }
-    );
+    const data = await Api.put(`/timesheet/update/${timesheet._id}`, {
+      project_name: timesheet.project_name,
+      status: status,
+      activity: timesheet.activity,
+      date: timesheet.date,
+      duration: timesheet.duration,
+    });
     if (data.data.success) {
       message.success(
         `${timesheet?.employee_name}'s TimeSheet is ${status} succesfully`
@@ -66,9 +64,7 @@ const updateTimesheet = async ({ timesheet, status }) => {
 // eslint-disable-next-line no-unused-vars
 const DeleteTimeSheet = async ({ timesheet, status }) => {
   try {
-    const data = await axios.delete(
-      `${API_URL}/timesheet/delete/${timesheet._id}`
-    );
+    const data = await Api.delete(`/timesheet/delete/${timesheet._id}`);
     if (data.data.success) {
       message.success(`${timesheet.name}'s TimeSheet is Deleted successfully`);
     } else {
