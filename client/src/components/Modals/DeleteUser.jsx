@@ -5,7 +5,7 @@ const DeleteUser = ({ visible }) => {
   return (
     <Modal open={visible}>
       <h2>
-        Are you sure to delete the employee wiht Name: ${user.employee_name}
+        Are you sure to delete the employee with Name: ${user.employee_name}
       </h2>
     </Modal>
   );

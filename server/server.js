@@ -1,10 +1,13 @@
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const app = express();
 const { default: mongoose } = require("mongoose");
 require("dotenv").config();
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "build")));
+
 app.use(
   cors({
     origin: [
@@ -29,8 +32,15 @@ app.use("/leaverequest/", leaveRequestRoute);
 const timesheetRoute = require("./routes/timesheetRoute");
 app.use("/timesheet/", timesheetRoute);
 
+const teamRoutes = require("./routes/teamRoutes");
+app.use("/team/", teamRoutes);
+
 app.get("/", (req, res) => {
   return res.json("hi there");
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 mongoose.connect(process.env.DB_STRING, { useNewUrlParser: true });

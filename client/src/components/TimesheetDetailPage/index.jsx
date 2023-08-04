@@ -3,11 +3,10 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import { DateRange, AvTimer, Task } from "@mui/icons-material";
 
+const API_URL = "https://server-sx5c.onrender.com";
 const getTimeSheetDetails = async (id) => {
   try {
-    const data = await axios.get(
-      `http://localhost:4000/timesheet/getone/${id}`
-    );
+    const data = await axios.get(`${API_URL}/timesheet/getone/${id}`);
     return data.data;
   } catch (error) {
     console.log(error);

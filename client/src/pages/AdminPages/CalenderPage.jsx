@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import * as React from "react";
 import dayjs from "dayjs";
 import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
@@ -8,11 +10,11 @@ import { useParams } from "react-router-dom";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { useNavigate } from "react-router-dom";
 
-export default function CalenderPage() {
+export default function CalenderPage({ value, setValue }) {
   const navigate = useNavigate();
   const { employeeId } = useParams();
   console.log(employeeId);
-  const [value, setValue] = React.useState(dayjs(new Date()));
+  // const [value, setValue] = React.useState(dayjs(new Date()));
   // console.log(value.$d.getDate());
   // console.log(value.$d.getMonth() + 1);
   // console.log(value.$d.getFullYear());

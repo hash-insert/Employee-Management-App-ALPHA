@@ -9,6 +9,9 @@ router.get("/getOne/:id",getOneTimesheet);
 const {getAll} = require('../controllers/timesheetController')
 router.get('/getAll',getAll)
 
+const {getByEmail} = require('../controllers/timesheetController')
+router.get("/getByEmail/:email",getByEmail);
+
 const {deleteTimesheet} = require('../controllers/timesheetController')
 router.delete('/delete/:id',deleteTimesheet)
 
