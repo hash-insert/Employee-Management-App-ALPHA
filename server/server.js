@@ -8,16 +8,19 @@ require("dotenv").config();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "build")));
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "https://employee-management-app-je5w.onrender.com",
-      "https://admirable-khapse-7ed76a.netlify.app",
-    ],
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: [
+    "http://localhost:5173",
+    "https://employee-management-app-je5w.onrender.com",
+    "https://admirable-khapse-7ed76a.netlify.app",
+  ],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
+// ... rest of your routes and code ...
+
 const postionRoute = require("./routes/posi_route");
 app.use("/position/", postionRoute);
 
