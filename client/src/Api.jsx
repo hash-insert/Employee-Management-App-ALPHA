@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const Api = axios.create({
-  baseURL: "https://employee-0131.onrender.com",
+  baseURL: "https://employee-management-app-server.onrender.com",
 });
 
 export { Api };
