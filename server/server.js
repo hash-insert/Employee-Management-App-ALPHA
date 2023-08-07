@@ -13,7 +13,7 @@ const corsOptions = {
     "http://localhost:5173",
     "https://employee-management-app-je5w.onrender.com",
     "https://admirable-khapse-7ed76a.netlify.app",
-    "https://zesty-banoffee-934fa0.netlify.app",
+    "https://fluffy-halva-49f833.netlify.app",
   ],
   credentials: true,
 };
