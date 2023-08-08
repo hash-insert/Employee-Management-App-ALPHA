@@ -9,6 +9,7 @@ import axios from "axios";
 import { message } from "antd";
 import EastIcon from "@mui/icons-material/East";
 import { Link } from "react-router-dom";
+import { Api } from "../../../Api";
 
 const Schema = yup.object().shape({
   project_name: yup.string().required("Please enter a Project Name."),
@@ -50,7 +51,7 @@ const sendTimeSheet = async (data) => {
     data.date = `${year}-${month}-${day}`;
     data.duration = data.duration.toString() + "hrs"; // Convert duration to string
     console.log(data);
-    const response = await axios.post(`${API_URL}/timesheet/save`, {
+    const response = await Api.post(`/timesheet/save`, {
       project_name: data.project_name,
       activity: data.activity,
       date: data.date,
