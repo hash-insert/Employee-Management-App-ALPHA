@@ -20,6 +20,7 @@ import { useContext } from "react";
 import { RerenderContext } from "../../context/ReRender";
 import { message } from "antd";
 
+
 // Define the Yup validation schema
 const validationSchema = Yup.object().shape({
   // employeeId: Yup.number().required("Employee ID is required"),
@@ -85,7 +86,7 @@ export default function FormDialog({ open, handleClose }) {
             gender: values.gender, // Include gender in the server request
           };
 
-          await fetch("https://server-sx5c.onrender.com/employee/save", {
+          await fetch("https://employee-management-app-server.onrender.com/employee/save", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

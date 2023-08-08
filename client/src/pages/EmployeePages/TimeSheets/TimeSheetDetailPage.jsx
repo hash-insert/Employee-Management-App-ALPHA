@@ -22,7 +22,6 @@ import { auth } from "../../../config/firebase.js";
 import Loader from "../../../Loader";
 import { Api } from "../../../Api";
 
-const API_URL = "https://server-sx5c.onrender.com";
 
 const getAllTimesheets = async () => {
   try {

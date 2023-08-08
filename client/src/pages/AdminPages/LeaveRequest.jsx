@@ -4,14 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 import { List, message } from "antd";
-import axios from "axios";
 import { Api } from "../../Api";
 
 const LeaveRequest = () => {
   const finalUser = useContext(AuthContext);
   const navigate = useNavigate();
   const [leaves, setLeaves] = useState([]);
-  const API_URL = "https://server-sx5c.onrender.com";
 
   // navigate to / if user is not logged in
 

@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 export default function CalenderPage({ value, setValue }) {
   const navigate = useNavigate();
   const { employeeId } = useParams();
-  console.log(employeeId);
   // const [value, setValue] = React.useState(dayjs(new Date()));
   // console.log(value.$d.getDate());
   // console.log(value.$d.getMonth() + 1);

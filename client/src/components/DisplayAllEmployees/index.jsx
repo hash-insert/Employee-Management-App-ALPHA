@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useQuery } from "react-query";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "react-calendar/dist/Calendar.css";

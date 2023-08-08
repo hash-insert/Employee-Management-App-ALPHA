@@ -1,7 +1,6 @@
 import EmployeeProfile from "../../../components/EmployeeProfile/index";
 import { useQuery } from "react-query";
 import { auth } from "../../../config/firebase";
-import axios from "axios";
 import Loader from "../../../Loader.jsx";
 import { Api } from "../../../Api";
 

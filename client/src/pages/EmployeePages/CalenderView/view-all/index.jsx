@@ -23,7 +23,6 @@ import Loader from "../../../../Loader";
 import { useParams } from "react-router-dom";
 import { Api } from "../../../../Api";
 
-const API_URL = "https://server-sx5c.onrender.com";
 
 const getAllTimesheets = async () => {
   try {

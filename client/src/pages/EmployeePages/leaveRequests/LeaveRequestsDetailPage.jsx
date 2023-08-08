@@ -11,7 +11,6 @@ import { useTable } from "react-table";
 import Loader from "../../../Loader";
 import { Api } from "../../../Api";
 
-const API_URL = "https://server-sx5c.onrender.com";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;

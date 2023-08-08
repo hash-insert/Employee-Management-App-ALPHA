@@ -13,7 +13,6 @@ export const EditForm = ({ visible, onCancel, initialValues, onFinish }) => {
     form
       .validateFields()
       .then((values) => {
-        console.log(values);
         onFinish({
           ...initialValues,
           employee_name: values.employee_name,
