@@ -114,7 +114,10 @@ const TimeSheets = () => {
       <div className=" flex justify-between items-center flex-wrap mb-6 text-xl text-primary-button font-bold">
         <h1>Submit TimeSheets</h1>
 
-        <Link to={"/employee/timesheetsdetails"} className=" cursor-pointer">
+        <Link
+          to={"/employee/timesheetsdetails"}
+          className=" cursor-pointer text-red-500"
+        >
           View All
           <EastIcon className=" ml-2" />
         </Link>

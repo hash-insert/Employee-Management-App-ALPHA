@@ -21,7 +21,7 @@ export default function CalenderPage({ value, setValue }) {
 
   return (
     <>
-      <div>
+      {/* <div>
         <button
           onClick={() => navigate(`/admin/timesheets`)}
           className=" bg-primary-button font-medium px-2 py-2 rounded-md text-base text-text-color inline-block text-white mb-4"
@@ -29,7 +29,7 @@ export default function CalenderPage({ value, setValue }) {
           <KeyboardArrowLeftIcon className="  text-inherit  " />
           Back
         </button>
-      </div>
+      </div> */}
 
       <div className=" flex justify-center">
         <LocalizationProvider dateAdapter={AdapterDayjs}>

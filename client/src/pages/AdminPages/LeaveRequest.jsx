@@ -41,9 +41,15 @@ const LeaveRequest = () => {
         `/leaverequest/update/${leave._id}`,
         leave
       );
+      console.log("leave", leave);
       if (response.data.success) {
-        message.success(`${leave.employee_name}'s leave ${leaveStatus}`);
-        getAllLeaves();
+        if (leaveStatus === "accepted") {
+          message.success(`${leave.employee_name}'s leave ${leaveStatus}`);
+          getAllLeaves();
+        } else {
+          message.error(`${leave.employee_name}'s leave ${leaveStatus}`);
+          getAllLeaves();
+        }
       } else {
         message.error(response.data.msg);
       }

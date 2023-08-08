@@ -48,9 +48,15 @@ const updateTimesheet = async ({ timesheet, status }) => {
       duration: timesheet.duration,
     });
     if (data.data.success) {
-      message.success(
-        `${timesheet?.employee_name}'s TimeSheet is ${status} succesfully`
-      );
+      if (status === "approved") {
+        message.success(
+          `${timesheet?.employee_name}'s TimeSheet is ${status} succesfully`
+        );
+      } else {
+        message.error(
+          `${timesheet?.employee_name}'s TimeSheet is ${status} succesfully`
+        );
+      }
     } else {
       message.error(`Oops!, something went wrong.`);
     }
@@ -66,7 +72,15 @@ const DeleteTimeSheet = async ({ timesheet, status }) => {
   try {
     const data = await Api.delete(`/timesheet/delete/${timesheet._id}`);
     if (data.data.success) {
-      message.success(`${timesheet.name}'s TimeSheet is Deleted successfully`);
+      if (status === "approved") {
+        message.success(
+          `${timesheet.employee_name}'s TimeSheet is Deleted successfully`
+        );
+      } else {
+        message.error(
+          `${timesheet.employee_name}'s TimeSheet is Deleted successfully`
+        );
+      }
     } else {
       message.error("Oops!, something went wrong.");
     }
@@ -234,6 +248,15 @@ const TimeSheetDetailPage = ({ status }) => {
   //   }
   // };
 
+  if (!filteredData.length) {
+    return (
+      <div className=" flex flex-col gap-12 justify-center items-center ">
+        <img src="/empty.svg" alt="empty" className=" max-w-sm" />
+        <div className=" text-4xl text-indigo-600 font-extrabold">No data</div>
+      </div>
+    );
+  }
+
   return (
     <div className="p-4">
       {/* <button className=" ">
@@ -259,7 +282,7 @@ const TimeSheetDetailPage = ({ status }) => {
                 <>
                   <button
                     key="approve"
-                    onClick={() => handleClose(timesheet._id)}
+                    onClick={() => handleSubmit(timesheet, "approved")}
                     className="bg-green-400 px-4 py-2 rounded-md text-white font-semibold"
                   >
                     Approve

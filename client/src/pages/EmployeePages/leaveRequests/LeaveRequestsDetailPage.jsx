@@ -108,26 +108,44 @@ function LeaveRequestsDetailPage() {
       </Box>
       <CustomTabPanel value={value} index={0}>
         <div>
-          <h1 className=" text-xl font-bold text-primary-button mb-6">
-            Pending Leave Requests
-          </h1>
-          <CustomTable columns={columns} data={pendingData} />
+          {pendingData.length === 0 ? (
+            <div className=" flex flex-col gap-12 justify-center items-center ">
+              <img src="/empty.svg" alt="empty" className=" max-w-sm" />
+              <div className=" text-4xl text-indigo-600 font-extrabold">
+                No data
+              </div>
+            </div>
+          ) : (
+            <CustomTable columns={columns} data={pendingData} />
+          )}
         </div>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         <div>
-          <h1 className=" text-xl font-bold text-primary-button mb-6">
-            Approved Leave Requests
-          </h1>
-          <CustomTable columns={columns} data={approvedData} />
+          {approvedData.length === 0 ? (
+            <div className=" flex flex-col gap-12 justify-center items-center ">
+              <img src="/empty.svg" alt="empty" className=" max-w-sm" />
+              <div className=" text-4xl text-indigo-600 font-extrabold">
+                No data
+              </div>
+            </div>
+          ) : (
+            <CustomTable columns={columns} data={approvedData} />
+          )}
         </div>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         <div>
-          <h1 className=" text-xl font-bold text-primary-button mb-6">
-            Rejected Leave Requests
-          </h1>
-          <CustomTable columns={columns} data={rejectedData} />
+          {rejectedData.length === 0 ? (
+            <div className=" flex flex-col gap-12 justify-center items-center ">
+              <img src="/empty.svg" alt="empty" className=" max-w-sm" />
+              <div className=" text-4xl text-indigo-600 font-extrabold">
+                No data
+              </div>
+            </div>
+          ) : (
+            <CustomTable columns={columns} data={rejectedData} />
+          )}
         </div>
       </CustomTabPanel>
     </Box>
@@ -152,9 +170,9 @@ function CustomTable({ columns, data }) {
     useTable({ columns, data });
 
   // eslint-disable-next-line react/prop-types
-  if (data.length === 0) {
-    return <div>No data available.</div>;
-  }
+  // if (data.length === 0) {
+  //   return <div>No data available.</div>;
+  // }
 
   return (
     <div style={{ overflowX: "auto" }}>

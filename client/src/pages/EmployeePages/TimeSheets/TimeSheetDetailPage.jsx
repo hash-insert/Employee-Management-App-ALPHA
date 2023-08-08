@@ -40,7 +40,9 @@ const DeleteTimeSheet = async ({ timesheet, status }) => {
   try {
     const data = await Api.delete(`/timesheet/delete/${timesheet._id}`);
     if (data.data.success) {
-      message.success(`${timesheet.name}'s TimeSheet is Deleted successfully`);
+      message.error(
+        `${timesheet.employee_name}'s TimeSheet is Deleted successfully`
+      );
     } else {
       message.error("Oops!, something went wrong.");
     }
@@ -185,6 +187,22 @@ const TimeSheetDetailPage = ({ status }) => {
     return <h1>Error: {error.message}</h1>;
   }
 
+  if (!filteredData.length) {
+    return (
+      <>
+        <h1 className="text-xl font-bold text-primary-button mb-6">
+          There are no {status} timesheets
+        </h1>
+        <div className=" flex flex-col gap-12 justify-center items-center ">
+          <img src="/empty.svg" alt="empty" className=" max-w-sm" />
+          <div className=" text-4xl text-indigo-600 font-extrabold">
+            No data
+          </div>
+        </div>
+      </>
+    );
+  }
+
   const handleSubmit = async (timesheet, status) => {
     console.log("submit function called");
     try {
@@ -201,9 +219,6 @@ const TimeSheetDetailPage = ({ status }) => {
         Back
       </button> */}
 
-      <h1 className="text-xl font-bold text-primary-button mb-6">
-        Time Sheets
-      </h1>
       {filteredData.map((timesheet) => {
         const isOpen = openStates[timesheet._id] || false; // Retrieve the open state for this timesheet
 

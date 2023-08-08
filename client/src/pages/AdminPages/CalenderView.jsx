@@ -3,6 +3,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import CalenderPage from "./CalenderPage";
 import dayjs from "dayjs";
+import EastIcon from "@mui/icons-material/East";
 
 const CalenderView = () => {
   const finalUser = React.useContext(AuthContext);
@@ -21,10 +22,18 @@ const CalenderView = () => {
   }, [finalUser?.user?.email]);
   return (
     <>
-      <div className=" text-xl font-bold text-primary-button mb-6 flex flex-wrap justify-between items-center">
-        <div>CalenderView</div>
+      <div className=" text-xl font-bold text-primary-button mb-6 flex justify-between items-center">
         <div>
-          <Link to={`/admin/timesheet/${date}`}>View All</Link>
+          <h1>
+            Calender View for {value.$d.getDate()}/{value.$d.getMonth() + 1}/
+            {value.$d.getFullYear()}
+          </h1>
+        </div>
+        <div className=" text-red-600 ">
+          <Link to={`/admin/timesheet/${date}`}>
+            View All
+            <EastIcon className=" ml-2" />
+          </Link>
         </div>
       </div>
       <CalenderPage value={value} setValue={setValue} />

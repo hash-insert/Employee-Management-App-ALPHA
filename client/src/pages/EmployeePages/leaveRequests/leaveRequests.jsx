@@ -7,7 +7,10 @@ const leaveRequests = () => {
     <>
       <div className=" flex justify-between items-center text-xl font-bold text-primary-button mb-12 flex-wrap ">
         <div>Leave Requests</div>
-        <Link to={"/employee/leaverequestsdetails"} className=" cursor-pointer">
+        <Link
+          to={"/employee/leaverequestsdetails"}
+          className=" cursor-pointer text-red-500"
+        >
           View All
           <EastIcon className=" ml-2" />
         </Link>

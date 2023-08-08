@@ -157,7 +157,7 @@ const Employees = () => {
           querySnapshot.forEach((doc) => {
             deleteDoc(doc.ref);
           });
-          message.success(`${user.employee_name} is Deleted successfully`);
+          message.error(`${user.employee_name} is Deleted successfully`);
         } else {
           message.error(response.data.msg);
         }

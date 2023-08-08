@@ -1,6 +1,6 @@
 import LandingPage from "./pages/LandingPage";
 import Navbar from "./components/Navbar";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Employees from "./pages/AdminPages/Employees";
 import CalenderView from "./pages/AdminPages/CalenderView";
 import TimeSheets from "./pages/AdminPages/TimeSheets";
@@ -21,7 +21,7 @@ import ViewAllTimesheetsAdmin from "./pages/AdminPages/view-all-timesheets-admin
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <Router>
         <Navbar />
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -57,7 +57,7 @@ function App() {
           />
           <Route path="*" element={<Error />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </>
   );
 }

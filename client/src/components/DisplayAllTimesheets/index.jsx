@@ -32,9 +32,15 @@ const updateTimesheet = async ({ timesheet, status }) => {
       duration: timesheet.duration,
     });
     if (data.data.success) {
-      message.success(
-        `${timesheet?.employee_name}'s TimeSheet is ${status} succesfully`
-      );
+      if (status === "approved") {
+        message.success(
+          `${timesheet?.employee_name}'s TimeSheet is ${status} succesfully`
+        );
+      } else {
+        message.error(
+          `${timesheet?.employee_name}'s TimeSheet is ${status} succesfully`
+        );
+      }
     } else {
       message.error(`Oops!, something went wrong.`);
     }
@@ -98,11 +104,17 @@ const Index = () => {
     }
   };
 
+  if (!filterData?.length) {
+    return (
+      <div className=" flex flex-col gap-12 justify-center items-center ">
+        <img src="/empty.svg" alt="empty" className=" max-w-sm" />
+        <div className=" text-4xl text-indigo-600 font-extrabold">No data</div>
+      </div>
+    );
+  }
+
   return (
     <div className="p-4">
-      <h1 className="text-xl font-bold text-primary-button mb-6">
-        Time Sheets
-      </h1>
       {filterData?.map((timesheet) => {
         const isOpen = openStates[timesheet._id] || false; // Retrieve the open state for this timesheet
 
