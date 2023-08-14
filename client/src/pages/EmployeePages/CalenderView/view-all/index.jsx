@@ -27,7 +27,6 @@ import { Api } from "../../../../Api";
 const getAllTimesheets = async () => {
   try {
     const data = await Api.get(`/timesheet/getAll`);
-    console.log(data.data);
     return data.data; // Assuming the timesheet data is returned as an array
   } catch (error) {
     console.log(error);

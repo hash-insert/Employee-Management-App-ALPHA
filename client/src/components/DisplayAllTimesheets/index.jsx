@@ -94,7 +94,6 @@ const Index = () => {
   }
 
   const handleSubmit = async (timesheet, status) => {
-    console.log("submit function called");
     try {
       mutation.mutate({ timesheet, status });
       handleClose(timesheet._id); // Close the dialog after the mutation is successful

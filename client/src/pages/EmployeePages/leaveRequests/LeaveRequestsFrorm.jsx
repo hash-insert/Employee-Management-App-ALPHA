@@ -37,7 +37,7 @@ const sendLeaveRequest = async (data) => {
     data.employee_email = auth.currentUser.email;
     data.employee_name = auth.currentUser.displayName;
     const res = await Api.post(`/leaverequest/save`, data);
-    console.log(res.data);
+    // console.log(res.data);
     if (res.data.success) {
       message.success(`Submitted Successfully`);
       return res.data;
@@ -66,7 +66,7 @@ const LeaveRequestsFrorm = () => {
   const mutation = useMutation(sendLeaveRequest);
   const onSubmit = (obj) => {
     mutation.mutate(obj);
-    console.log(obj);
+    // console.log(obj);
     reset();
   };
 
